@@ -1,5 +1,6 @@
 - name: Frontend
   hosts: all
+  become: true
   tasks:
     - name: disable nginx
       ansible.builtin.shell: dnf module disable nginx -y
