@@ -27,7 +27,10 @@
     state: restarted
     enabled: yes
 
-
+- name: Check if Redis is listening on 0.0.0.0:6379
+  ansible.builtin.shell: ss -ltnp | grep ':6379'
+  register: redis_ports
+  changed_when: false
 
 
 #print_head Disable redis
