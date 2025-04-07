@@ -32,6 +32,12 @@
   register: redis_ports
   changed_when: false
 
+- name: Verify Redis is responding on port 6379
+  ansible.builtin.shell: |
+    redis-cli -h 127.0.0.1 -p 6379 PING
+  register: redis_ping
+  changed_when: false
+
 
 #print_head Disable redis
 #dnf module disable redis -y
