@@ -1,8 +1,8 @@
 - name: Disable redis
-  ansible.builtin.shell: dnf module disable redis
+  ansible.builtin.shell: dnf module disable redis -y
 
 - name: Enable redis v7
-  ansible.builtin.shell: dnf module enable redis:7
+  ansible.builtin.shell: dnf module enable redis:7 -y
 
 - name: Install redis
   ansible.builtin.dnf:
