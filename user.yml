@@ -1,5 +1,5 @@
-- name: Redis Setup
+- name: User Setup
   hosts: all
   become: true
   tasks:
-    - redis
+     - user
