@@ -1,0 +1,44 @@
+#print_head installing rabbitmq-server
+#  ## install RabbitMQ and zero dependency Erlang
+#dnf install -y erlang rabbitmq-server
+#
+#print_head copiny files
+#cp rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
+#echo $?
+#
+#print_head enabeling
+#systemctl enable rabbitmq-server
+#systemctl start rabbitmq-server
+#echo $?
+#
+#print_head status
+#systemctl status rabbitmq-server
+#echo $?
+#
+#print_head adding and setting permissions
+#rabbitmqctl add_user roboshop roboshop123
+#rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+#echo $?
+
+- name: COpy RabbitMQ file
+  ansible.builtin.copy:
+    src: rabbitmq.repo
+    dest: /etc/yum.repos.d/rabbitmq.repo
+
+- name: Install RabbitMQ server
+  ansible.builtin.dnf:
+    name: rabbitmq-server
+    state: installed
+
+- name: Start RabbitMQ server
+  ansible.builtin.systemd_service:
+    name: rabbitmq-server
+    state: started
+
+- name: Add user to rabbitmq
+  ansible.builtin.shell: rabbitmqctl add_user roboshop roboshop123
+
+- name: Set permission to user
+  ansible.builtin.shell: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+
+
