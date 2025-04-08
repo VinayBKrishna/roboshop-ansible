@@ -2,7 +2,6 @@
   ansible.builtin.debug:
     msg: "Hello from Ansible!"
 
-
 - name: Copy RabbitMQ file
   ansible.builtin.copy:
     src: rabbitmq.repo
