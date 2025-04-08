@@ -22,9 +22,10 @@
   register: rabbitmq_user_check
   ignore_errors: true
 
-- name: rabbitmq_user_check
+- name: Print rabbitmq_user_check variable
   ansible.builtin.debug:
-    msg: rabbitmq_user_check
+    var: rabbitmq_user_check
+
 
 - name: Add RabbitMQ user if not present
   ansible.builtin.shell: rabbitmqctl add_user roboshop roboshop123
