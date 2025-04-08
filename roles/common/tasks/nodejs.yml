@@ -9,6 +9,15 @@
     name: nodejs
     state: present
 
+- name: Install NodeJs Dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+
+- name: Include systemd file
+  ansible.builtin.include_tasks:
+    file: artifact_download.yml
+
 - name: Include systemd file
   ansible.builtin.include_tasks:
     file: systemd_setup.yml

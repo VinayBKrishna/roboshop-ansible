@@ -18,13 +18,3 @@
     dest: /app
     remote_src: yes
 
-- name: Include artifact download file
-  ansible.builtin.include_tasks:
-      file: artificat_download.yml
-
-- name: NPM install
-  ansible.builtin.shell: npm install
-
-- name: Include systemd file
-  ansible.builtin.include_tasks:
-    file: systemd_setup.yml
