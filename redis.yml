@@ -1,5 +1,0 @@
-- name: Redis Setup
-  hosts: all
-  become: true
-  tasks:
-    - redis
