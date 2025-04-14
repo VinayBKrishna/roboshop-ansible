@@ -41,8 +41,25 @@
     state: restarted
     enabled: yes
 
-- name: enable nginx
-  ansible.builtin.shell: sudo systemctl status nginx
+- name: Check NGINX status
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+  register: nginx_status
+
+- name: Show NGINX status
+  ansible.builtin.debug:
+    var: nginx_status
+
+
+- name: Allow HTTP traffic through the firewall
+  ansible.builtin.firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+  notify:
+    - Reload firewalld
+
 
 
 
