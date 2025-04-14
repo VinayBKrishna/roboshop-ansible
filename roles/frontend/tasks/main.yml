@@ -47,6 +47,6 @@
 
 - name: update
   ansible.builtin.debug:
-    msg: redis_ports
+    var: redis_ports
 
 
