@@ -14,15 +14,15 @@
       - python3-devel
     state: present
 
-- name: Include systemd file
-  ansible.builtin.include_tasks:
-    file: artifact_download.yml
-
-
 - name: Install NodeJs Dependencies
   ansible.builtin.shell: pip3 install -r requirements.txt
   args:
     chdir: /app
+
+- name: Include systemd file
+  ansible.builtin.include_tasks:
+    file: artifact_download.yml
+
 
 - name: Include systemd file
   ansible.builtin.include_tasks:
