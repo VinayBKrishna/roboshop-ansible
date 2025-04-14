@@ -60,6 +60,14 @@
   ansible.builtin.debug:
     var: netstat_check
 
+- name: Show last 10 lines of NGINX error log
+  ansible.builtin.shell: "tail -n 10 /var/log/nginx/error.log"
+  register: nginx_error_log
+
+- name: Show NGINX error log output
+  ansible.builtin.debug:
+    var: nginx_error_log
+
 
 
 
