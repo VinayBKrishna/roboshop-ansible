@@ -15,11 +15,11 @@
     state: installed
 
 - name: Load schema
-  ansible.builtin.shell: mysql -h mysql{{ env }}mikeydevops1.online -uroot -pRoboShop@1 < /app/db/schema.sql
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.mikeydevops1.online -uroot -pRoboShop@1 < /app/db/schema.sql
 
 - name: Load schema
-  ansible.builtin.shell: mysql -h mysql{{ env }}mikeydevops1.online -uroot -pRoboShop@1 < /app/db/schema.sql
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.mikeydevops1.online -uroot -pRoboShop@1 < /app/db/schema.sql
 
 - name: Load schema
-  ansible.builtin.shell: mysql -h mysql{{ env }}mikeydevops1.online -uroot -pRoboShop@1 < /app/db/schema.sql
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.mikeydevops1.online -uroot -pRoboShop@1 < /app/db/schema.sql
 
