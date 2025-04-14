@@ -4,7 +4,7 @@
     tasks_from: nodejs
 
 - name: Copy MongoDB repo file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: mongod.repo
     dest: /etc/yum.repos.d/mongo.repo
 
@@ -15,7 +15,7 @@
     state: installed
 
 - name: Load MasterDB data
-  ansible.builtin.shell: mongosh --host mongo-dev.mikeydevops1.online </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongo{{ env }}mikeydevops1.online </app/db/master-data.js
 
 
 
@@ -34,5 +34,5 @@
 #
 #  print_head hosting mongosh
 #  # this is an input redirector where input is given to host
-#  mongosh --host mongo-dev.mikeydevops1.online </app/db/master-data.js
+#  mongosh --host mongo{{ env }}mikeydevops1.online </app/db/master-data.js
 #  exit_status $?

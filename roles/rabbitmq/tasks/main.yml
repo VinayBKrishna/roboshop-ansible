@@ -3,7 +3,7 @@
     msg: "Hello from Ansible!"
 
 - name: Copy RabbitMQ file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: rabbitmq.repo
     dest: /etc/yum.repos.d/rabbitmq.repo
 
@@ -30,7 +30,6 @@
 - name: Add RabbitMQ user if not present
   ansible.builtin.shell: rabbitmqctl add_user roboshop roboshop123
   when: rabbitmq_user_check.rc != 0
-
 - name: Set permission to user
   ansible.builtin.shell: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
 
