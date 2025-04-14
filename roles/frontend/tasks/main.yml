@@ -34,11 +34,6 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 
-- name: Start Nginx
-  ansible.builtin.service:
-    name: nginx
-    state: started
-    enabled: yes
 
 - name: Start Nginx
   ansible.builtin.service:
@@ -46,6 +41,8 @@
     state: restarted
     enabled: yes
 
+- name: enable nginx
+  ansible.builtin.shell: sudo journalctl -xeu nginx.service
 
 
 
