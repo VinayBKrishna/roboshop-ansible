@@ -1,6 +1,10 @@
 - name: disable nginx
   ansible.builtin.shell: dnf module disable nginx -y
 
+- name: env name
+  ansible.builtin.debug:
+    msg: "{{ env }}"
+
 - name: enable nginx
   ansible.builtin.shell: dnf module enable nginx:1.24 -y
 
