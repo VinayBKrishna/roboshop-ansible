@@ -51,14 +51,16 @@
   ansible.builtin.debug:
     var: nginx_status
 
+- name: Check if NGINX is listening on port 80
+  ansible.builtin.shell: "netstat -tuln | grep :80"
+  register: netstat_check
+  failed_when: netstat_check.rc != 0
 
-- name: Allow HTTP traffic through the firewall
-  ansible.builtin.firewalld:
-    service: http
-    permanent: yes
-    state: enabled
-  notify:
-    - Reload firewalld
+- name: Show netstat check result
+  ansible.builtin.debug:
+    var: netstat_check
+
+
 
 
 
