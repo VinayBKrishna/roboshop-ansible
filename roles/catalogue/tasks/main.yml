@@ -15,7 +15,7 @@
     state: installed
 
 - name: Load MasterDB data
-  ansible.builtin.shell: mongosh --host mongo{{ env }}mikeydevops1.online </app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongo-{{ env }}.mikeydevops1.online </app/db/master-data.js
 
 
 
