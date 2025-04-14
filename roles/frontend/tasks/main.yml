@@ -42,11 +42,8 @@
     enabled: yes
 
 - name: enable nginx
-  ansible.builtin.shell: sudo journalctl -xeu nginx.service
-  register: redis_ports
+  ansible.builtin.shell: sudo systemctl status nginx
 
-- name: update
-  ansible.builtin.debug:
-    var: redis_ports
+
 
 
