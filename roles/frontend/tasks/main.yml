@@ -43,7 +43,10 @@
 
 - name: enable nginx
   ansible.builtin.shell: sudo journalctl -xeu nginx.service
+  register: redis_ports
 
-
+- name: update
+  ansible.builtin.debug:
+    msg: redis_ports
 
 
