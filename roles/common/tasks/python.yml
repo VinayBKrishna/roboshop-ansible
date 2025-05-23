@@ -14,8 +14,13 @@
       - python3-devel
     state: present
 
-- name: Install NodeJs Dependencies
+- name: Show current working directory
   ansible.builtin.command: pwd
+  register: pwd_output
+
+- name: Display pwd result
+  ansible.builtin.debug:
+    var: pwd_output.stdout
 
 - name: Install NodeJs Dependencies
   ansible.builtin.command: pip3 install -r requirements.txt
