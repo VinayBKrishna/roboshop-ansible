@@ -3,9 +3,6 @@
     name: maven
     state: installed
 
-
-
-
 - name: Include artifact_download
   ansible.builtin.include_tasks:
     file: artifact_download.yml

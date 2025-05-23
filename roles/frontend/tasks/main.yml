@@ -1,76 +1,37 @@
-- name: disable nginx
+- name: Disable Default Nginx
   ansible.builtin.shell: dnf module disable nginx -y
 
-- name: env name
-  ansible.builtin.debug:
-    msg: "{{ env }}"
-
-- name: enable nginx
+- name: Enable Nginx 24
   ansible.builtin.shell: dnf module enable nginx:1.24 -y
 
 - name: Install nginx
   ansible.builtin.dnf:
     name: nginx
-    state: present
+    state: installed
 
-- name: Copy relevent nginx files
-  ansible.builtin.template:
-    src: nginx.conf.j2
-    dest: /etc/nginx/nginx.conf.j2
+- name: Copy nginx config file
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
 
-- name: Remove old app directory
+- name: Remove old app content
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
 
-- name: create App content directory
+- name: Create app content directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: directory
 
-- name: Unarchive a file that needs to be downloaded (added in 2.0)
+- name: Download and extract app content
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
     dest: /usr/share/nginx/html
     remote_src: yes
 
-
-- name: Start Nginx
-  ansible.builtin.service:
+- name: Start nginx
+  ansible.builtin.systemd_service:
     name: nginx
     state: restarted
     enabled: yes
-
-- name: Check NGINX status
-  ansible.builtin.systemd:
-    name: nginx
-    state: started
-  register: nginx_status
-
-- name: Show NGINX status
-  ansible.builtin.debug:
-    var: nginx_status
-
-- name: Check if NGINX is listening on port 80
-  ansible.builtin.shell: "netstat -tuln | grep :80"
-  register: netstat_check
-  failed_when: netstat_check.rc != 0
-
-- name: Show netstat check result
-  ansible.builtin.debug:
-    var: netstat_check
-
-- name: Show last 10 lines of NGINX error log
-  ansible.builtin.shell: "tail -n 10 /var/log/nginx/error.log"
-  register: nginx_error_log
-
-- name: Show NGINX error log output
-  ansible.builtin.debug:
-    var: nginx_error_log
-
-
-
-
-
-
-

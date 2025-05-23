@@ -18,14 +18,8 @@
   ansible.builtin.shell: mongosh --host mongo-{{ env }}.mikeydevops1.online </app/db/master-data.js
   register: mongoash
 
-- name: Load MasterDB data
-  ansible.builtin.shell: systemctl enable catalogue; systemctl start catalogue
 
 
-
-- name: check db
-  ansible.builtin.debug:
-    var: mongoash
 
 
 
