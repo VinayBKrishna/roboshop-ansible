@@ -15,7 +15,10 @@
     state: present
 
 - name: Install NodeJs Dependencies
-  ansible.builtin.shell: pip3 install -r requirements.txt
+  ansible.builtin.command: pwd
+
+- name: Install NodeJs Dependencies
+  ansible.builtin.command: pip3 install -r requirements.txt
   args:
     chdir: /app
 
