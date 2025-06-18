@@ -24,8 +24,7 @@
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     recreate: true
-    published_ports:
-      - "8080:8080"
+
     restart_policy: always
 
     env:
