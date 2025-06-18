@@ -6,7 +6,7 @@
 - name: Re-create a catalogue container
   community.docker.docker_container:
     name: catalogue
-    image: https://github.com/roboshop-devops-project-v3/catalogue
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
     state: started
     recreate: true
     published_ports:
