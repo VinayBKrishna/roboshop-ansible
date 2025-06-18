@@ -18,16 +18,57 @@
       DB_HOST: "mysql-dev.mikeydevops1.online"
 
 
-- name: Load Schema
+
+
+- name: Mysql setup-1 for Shipping
   community.docker.docker_container:
-    name: "shipping-{{item}}"
+    name: Mysql-1
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     recreate: true
-    env_file: /opt/shipping.env
+
+    restart_policy: always
+
     env:
-      SCHEMA_FILE: "db/{{ item }}.sql"
-  loop:
-    - app-user
-    - schema
-    - master-data
+      DB_TYPE: "mysql"
+      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
+      DB_HOST: "mysql-dev.mikeydevops1.online"
+      DB_USER: "root"
+      DB_PASS: "RoboShop@1"
+      SCHEMA_FILE: "db/app-user.sql"
+
+
+- name: Mysql setup-2 for Shipping
+  community.docker.docker_container:
+    name: Mysql-2
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+    state: started
+    recreate: true
+
+    restart_policy: always
+
+    env:
+      DB_TYPE: "mysql"
+      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
+      DB_HOST: "mysql-dev.mikeydevops1.online"
+      DB_USER: "root"
+      DB_PASS: "RoboShop@1"
+      SCHEMA_FILE: "db/schema.sql "
+
+- name: Mysql setup-3 for Shipping
+  community.docker.docker_container:
+    name: Mysql-3
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+    state: started
+    recreate: true
+
+    restart_policy: always
+
+    env:
+      DB_TYPE: "mysql"
+      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
+      DB_HOST: "mysql-dev.mikeydevops1.online"
+      DB_USER: "root"
+      DB_PASS: "RoboShop@1"
+      SCHEMA_FILE: "db/master-data.sql"
+
