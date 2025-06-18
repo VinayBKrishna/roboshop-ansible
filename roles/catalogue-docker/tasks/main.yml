@@ -18,18 +18,15 @@
       MONGO_URL: "mongodb://mongo-dev.mikeydevops1.online:27017/catalogue"
 
 
-- name: Load schema for catalogue
+- name: Load Schema for catalogue
   community.docker.docker_container:
-    name: load Schema
+    name: "catalogue-schema"
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     recreate: true
-
     restart_policy: always
-
     env:
       DB_TYPE: "mongo"
-      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/catalogue "
+      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/catalogue"
       DB_HOST: "mongo-dev.mikeydevops1.online"
-      SCHEMA_FILE: "db/master-data.js "
-
+      SCHEMA_FILE: "db/master-data.js"
